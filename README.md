@@ -77,10 +77,12 @@ The "**quantiles**" and "**weights**" are hyperparameters that you will need to 
 # VARIABLES TO SET
 ## min_cutoffs
 Define some minimum cutoffs, or in other words, drop all rows in the datasets where values are less than their corresponding mimumum before performing the scoring run. Example: If minimum "Profit Factor" value is 1, keep all rows where "Profit Factor" > 1, drop rows where "Profit Factor" <= 1. This helps to remove outliers, and shrink the search space before performing the scoring run. Dictionary format. If you don't want to define any cutoffs, leave this as an empty dictionary with no keys or values in it.
+
 `min_cutoffs = {"Profit Factor": 1, }`
 
 ## max_cutoffs
 Define some maximum cutoffs. Example: drop all rows where "Num of Trades" >= 100, keep rows where "Num of Trades" < 100. Dictionary format. If you don't want to define any cutoffs, leave this as an empty dictionary with no keys or values in it.
+
 `max_cutoffs = {"Num of Trades": 100, }`
 
 ## score_cols_with_weights
@@ -101,16 +103,19 @@ score_cols_with_weights = {"P:L Ratio": 1,
 
 ## smaller_col_score_is_better_list
 Which columns do a LOWER score mean it's better? These would be columns with numbers that you want to see go down, not up. Drawdown would be a good example of this, however, because drawdowns in the example document are already represented as negative numbers, technically we want them to go UP (closer to 0), so they are NOT included in this list below. List format. If you don't have any columns that where the values should decrease, leave this as an empty list with no values in it.
-`smaller_col_score_is_better_list = [#"Avg # Bars In Losing Trades: All", 
-
-                                    ]`
+```
+smaller_col_score_is_better_list = [#"Avg # Bars In Losing Trades: All", 
+                                    ]
+```
 
 ## tiebreaker_col
 If 2 results have the same "CombinedScore" in the end, use this column as the tiebreaker when sorting the results at the end. String (Column name).
+
 `tiebreaker_col = "Profit Factor"`
 
 ## quantiles
 Define a list of percentiles to use. Example, [0.2,0.4,0.6,0.8]. If a metric falls below the 0.2 quantile value in its respective column, if gets 1 weight point as defined in score_cols_with_weights. If it's between 0.6 and 0.79, it would get 4 points. List format or floats between 0 and 1.
+
 `quantiles = [0.25, 0.5, 0.75]`
 
 
