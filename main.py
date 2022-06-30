@@ -13,21 +13,19 @@ from tqdm import tqdm
 # have values less than their corresponding mimumum value.
 # Example: If "Profit Factor" value is 1, keep all rows where
 #          "Profit Factor" > 1, drop rows where "Profit Factor" <= 1.
-min_cutoffs = {# "Profit Factor": 0,
-              }
+min_cutoffs = {"Profit Factor": 1, }
 
 # Define some maximum cutoffs.
 # Example: drop all rows where "Num of Trades" >= 5000,
 #          keep rows where "Num of Trades" < 5000.
-max_cutoffs = {#"Equity DD %": 5000,
-              }
+max_cutoffs = {"Num of Trades": 100, }
 
 # Columns to score and their weightings (higher number
 # = more importance put on that score being better).
-score_cols_with_weights = {"P:L Ratio": 2,
-                           "Profit Factor": 2,
-                           "Win Rate %": 2,
-                           "Max Drawdown %": 2,
+score_cols_with_weights = {"P:L Ratio": 1,
+                           "Profit Factor": 1,
+                           "Win Rate %": 1,
+                           "Max Drawdown %": 1,
                            "Est. Avg Drawdown %": 1,
                            "Num of Trades": 1,
                            "Average Trade %": 1,
@@ -41,7 +39,7 @@ score_cols_with_weights = {"P:L Ratio": 2,
 # Drawdown would be a good example of this, however because drawdowns in the
 # example document are already negative, we want them to go UP (closer to 0),
 # So they are NOT included in this list below.
-smaller_col_score_is_better_list = [#"Avg # Bars In Losing Trades: All",
+smaller_col_score_is_better_list = [#"Avg # Bars In Losing Trades: All", 
                                     ]
 
 # If 2 results have the same "CombinedScore" in the end, use this
@@ -52,7 +50,7 @@ tiebreaker_col = "Profit Factor"
 # If a metric falls below the 0.2 quantile in its respective column,
 # if gets 1 weight point as defined in score_cols_with_weights. If
 # it's between 0.6 and 0.79, it would get 4 points.
-quantiles = [0.2,0.4,0.6,0.8]
+quantiles = [0.25, 0.5, 0.75]
 
 
 
