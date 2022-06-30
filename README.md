@@ -41,25 +41,15 @@ The **quantiles** are used to determine how many weighted "points" are given to 
 
 ```
 score_cols_with_weights = {"P:L Ratio": 1,
-
                            "Profit Factor": 1,
-                           
                            "Win Rate %": 1,
-                           
                            "Max Drawdown %": 1,
-                           
                            "Est. Avg Drawdown %": 1,
-                           
                            "Num of Trades": 1,
-                           
                            "Average Trade %": 1,
-                           
                            "Best Trade %": 1,
-                           
                            "Worst Trade %": 1,
-                           
                            "Final Comp Equity": 1,
-                           
 }
 ```
 
@@ -95,27 +85,19 @@ Define some maximum cutoffs. Example: drop all rows where "Num of Trades" >= 100
 
 ## score_cols_with_weights
 Columns to score and their weightings (higher number = more importance put on that score being better). Dictionary format.
-`score_cols_with_weights = {"P:L Ratio": 1,
-
+```
+score_cols_with_weights = {"P:L Ratio": 1,
                            "Profit Factor": 1,
-                           
                            "Win Rate %": 1,
-                           
                            "Max Drawdown %": 1,
-                           
                            "Est. Avg Drawdown %": 1,
-                           
                            "Num of Trades": 1,
-                           
                            "Average Trade %": 1,
-                           
                            "Best Trade %": 1,
-                           
                            "Worst Trade %": 1,
-                           
                            "Final Comp Equity": 1,
-                           
-}`
+}
+```
 
 ## smaller_col_score_is_better_list
 Which columns do a LOWER score mean it's better? These would be columns with numbers that you want to see go down, not up. Drawdown would be a good example of this, however, because drawdowns in the example document are already represented as negative numbers, technically we want them to go UP (closer to 0), so they are NOT included in this list below. List format. If you don't have any columns that where the values should decrease, leave this as an empty list with no values in it.
