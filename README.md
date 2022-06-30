@@ -37,18 +37,28 @@ The **weights** are numbers used to assign "importance" to each column. The high
 
 The **quantiles** are used to determine how many weighted "points" are given to each column, based on the current row's value compared to all the other values in the same column.
 
-Example: Let's assume that every column in the provided dataset are equally important when compared to one another. Our "score_cols_with_weights" dictionary would look like this:
+**Example**: Let's assume that every column in the provided dataset are equally important when compared to one another. Our "score_cols_with_weights" dictionary would look like this:
 
 `score_cols_with_weights = {"P:L Ratio": 1,
+
                            "Profit Factor": 1,
+                           
                            "Win Rate %": 1,
+                           
                            "Max Drawdown %": 1,
+                           
                            "Est. Avg Drawdown %": 1,
+                           
                            "Num of Trades": 1,
+                           
                            "Average Trade %": 1,
+                           
                            "Best Trade %": 1,
+                           
                            "Worst Trade %": 1,
+                           
                            "Final Comp Equity": 1,
+                           
 }`
 
 These are all the columns (apart from the "Strategy" column as it is non-numeric) that we want to consider in the final combined score. Notice the 1's used for every column. If we felt like, for example, the "Profit Factor" and "Max Drawdown %" were more "important" than all of the others, we could assign a weight of 2 or more to those columns, making sure those are weighted higher. But to keep it simple, let's assume they're all equally important.
@@ -57,18 +67,19 @@ Now, we can assign a quantiles list. Let's assume our quantiles are:
 
 `quantiles = [0.25, 0.5, 0.75]`
 
-Good. So now when the program starts, it'll iterate through each column, determine each of the quantile values for that column, then iterate through each row. Depending on the current value as compared to the quantile values, that will determine what "score" that row's value receives.
+**Good**. So now when the program starts, it'll iterate through each column, determine each of the quantile values for that column, then iterate through each row. Depending on the current value as compared to the quantile values, that will determine what "score" that row's value receives.
 
-Example: quantile values of "Profit Factor" column = [0.5, 1, 1.5]
+**Example**: quantile values of "Profit Factor" column = [0.5, 1, 1.5]
 if current row's "Profit Factor" <= 0.5, add 1 weight point. If it's <= 1, add another weighted point. If it's <= 1.5, add another weighted point. If it's > 1.5, add another weighted point.
+
 So if the current row's Profit Factor is 2.0, it would receive 4 x 1 weight point = 4 points.
 If the next row's Profit Factor is 0.75, it would receive 2 x 1 weight points = 2 points.
 
-NOTE: If the Profit Factor had a 2 weight instead of a 1 weight as defined in "score_cols_with_weights", these two would receive 4 x 2 weight points = 8 points, and 2 x 2 weight points = 4 points respectively.
+**NOTE**: If the Profit Factor had a 2 weight instead of a 1 weight as defined in "score_cols_with_weights", these two would receive 4 x 2 weight points = 8 points, and 2 x 2 weight points = 4 points respectively.
 
 It repeats this process for each column in the dataset, giving a combined sum of all weight points in the end, and sorts by the highest combined score. You can view your weighted results (and see the "best" row) in the "output_datasets" folder.
 
-The "quantiles" and "weights" are hyperparameters that you will need to tune, based on trial and error/intuition into the problem, so experiment with different weights, and quantile values (like quantiles = [0.2, 0.4, 0.6, 0.8] and different weight numbers in "score_cols_with_weights").
+The "**quantiles**" and "**weights**" are hyperparameters that you will need to tune, based on trial and error/intuition into the problem, so experiment with different weights, and quantile values (like quantiles = [0.2, 0.4, 0.6, 0.8] and different weight numbers in "score_cols_with_weights").
 
 
 # VARIABLES TO SET
@@ -83,20 +94,31 @@ Define some maximum cutoffs. Example: drop all rows where "Num of Trades" >= 100
 ## score_cols_with_weights
 Columns to score and their weightings (higher number = more importance put on that score being better). Dictionary format.
 `score_cols_with_weights = {"P:L Ratio": 1,
+
                            "Profit Factor": 1,
+                           
                            "Win Rate %": 1,
+                           
                            "Max Drawdown %": 1,
+                           
                            "Est. Avg Drawdown %": 1,
+                           
                            "Num of Trades": 1,
+                           
                            "Average Trade %": 1,
+                           
                            "Best Trade %": 1,
+                           
                            "Worst Trade %": 1,
+                           
                            "Final Comp Equity": 1,
+                           
 }`
 
 ## smaller_col_score_is_better_list
 Which columns do a LOWER score mean it's better? These would be columns with numbers that you want to see go down, not up. Drawdown would be a good example of this, however, because drawdowns in the example document are already represented as negative numbers, technically we want them to go UP (closer to 0), so they are NOT included in this list below. List format. If you don't have any columns that where the values should decrease, leave this as an empty list with no values in it.
 `smaller_col_score_is_better_list = [#"Avg # Bars In Losing Trades: All", 
+
                                     ]`
 
 ## tiebreaker_col
