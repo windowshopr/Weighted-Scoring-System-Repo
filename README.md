@@ -7,20 +7,20 @@ This repo contains a script that allows a user to calculate a weighted (by colum
 
 
 # ENVIRONMENT
-Windows 10
-Python 3.7.9
+- Windows 10
+- Python 3.7.9
 
 
 # REQUIREMENTS
-pandas==1.2.5
-tqdm==4.64.0
+- pandas==1.2.5
+- tqdm==4.64.0
 
 
 # INSTALLATION
 Download this repo and unzip the .zip file somewhere useful.
 
 # USAGE
-1. Load a dataset in .CSV or .XLSX format into the "input_datasets" folder.
+1. Load a dataset in .CSV or .XLSX format into the "input_datasets" folder
 2. Define the variables in main.py (described below)
 2. Run python main.py
 3. Inspect the "output_datasets" for the scored table
