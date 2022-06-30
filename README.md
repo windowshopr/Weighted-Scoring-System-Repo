@@ -39,7 +39,9 @@ The **quantiles** are used to determine how many weighted "points" are given to 
 
 **Example**: Let's assume that every column in the provided dataset are equally important when compared to one another. Our "score_cols_with_weights" dictionary would look like this:
 
-`score_cols_with_weights = {"P:L Ratio": 1,
+```
+score_cols_with_weights = {"P:L Ratio": 1,
+
                            "Profit Factor": 1,
                            
                            "Win Rate %": 1,
@@ -57,7 +59,9 @@ The **quantiles** are used to determine how many weighted "points" are given to 
                            "Worst Trade %": 1,
                            
                            "Final Comp Equity": 1,
-}`
+                           
+}
+```
 
 These are all the columns (apart from the "Strategy" column as it is non-numeric) that we want to consider in the final combined score. Notice the 1's used for every column. If we felt like, for example, the "Profit Factor" and "Max Drawdown %" were more "important" than all of the others, we could assign a weight of 2 or more to those columns, making sure those are weighted higher. But to keep it simple, let's assume they're all equally important.
 
